@@ -1,11 +1,19 @@
 import React from 'react';
 import SearchHeader from "../components/SearchHeader.jsx";
-import {Outlet} from "react-router";
+import {useLocation} from "react-router";
 
 export default function VideosDetail() {
+    const {state : {video}} = useLocation();
+    const {title} = video.snippet;
     return (
-        <>
-            <h3>Videos Detail</h3>
-        </>
+        <section>
+            <iframe id="existing-iframe-example"
+                    width="100%" height="640"
+                    src={`https://www.youtube.com/embed/${video.id}`}
+            />
+            <div>
+                <h2>{title}</h2>
+            </div>
+        </section>
     );
 }
